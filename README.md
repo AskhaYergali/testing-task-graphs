@@ -1,5 +1,5 @@
 # testing-task-graphs
-solution for testing task with graphs
+Solution for testing task with graphs \n
 Project describes the solution to the given task - Trains and Towns
 Main class reads the data from the file input.txt, which has to be situated in the same directory as the project, or the jar file.
 The output of the project is written to the file named output.txt, after project performs countings.
