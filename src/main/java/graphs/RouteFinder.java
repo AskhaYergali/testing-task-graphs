@@ -5,10 +5,6 @@ import java.util.*;
 public class RouteFinder {
     Graph graph;
 
-    public List<LinkedList<CityNode>> shortPathsFromCtoC = new ArrayList<>();
-
-    public Integer totalC = 0;
-
     public RouteFinder(Graph graph) {
         this.graph = graph;
     }
@@ -121,9 +117,6 @@ public class RouteFinder {
                 if (adjacencyPair.getKey().getName().equals(source.getName())) {
                     if (source.getDistance() == 0 || adjacencyPair.getValue() + currentNode.getDistance() < source.getDistance()) {
                         source.setDistance(adjacencyPair.getValue() + currentNode.getDistance());
-                        /*LinkedList<CityNode> shortestPath = new LinkedList<>(currentNode.getShortestPath());
-                        shortestPath.add(currentNode);
-                        source.setShortestPath(shortestPath);*/
                     }
                 }
                 CityNode adjacentNode = adjacencyPair.getKey();
@@ -147,14 +140,6 @@ public class RouteFinder {
             shortestPath.add(sourceNode);
             evaluationNode.setShortestPath(shortestPath);
         }
-    }
-
-    private static void CalculateDistance(CityNode evaluationNode, Integer edgeWeigh, CityNode sourceNode) {
-        Integer sourceDistance = sourceNode.getDistance();
-        evaluationNode.setDistance(sourceDistance + edgeWeigh);
-        LinkedList<CityNode> shortestPath = new LinkedList<>(sourceNode.getShortestPath());
-        shortestPath.add(sourceNode);
-        evaluationNode.setShortestPath(shortestPath);
     }
 
     private static CityNode getLowestDistanceNode(Set<CityNode> unsettledNodes) {

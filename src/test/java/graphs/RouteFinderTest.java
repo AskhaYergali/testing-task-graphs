@@ -37,7 +37,6 @@ public class RouteFinderTest {
             sourceNode.addDestination(targetNode, distance);
             testGraph.addNode(sourceNode);
             testGraph.addNode(targetNode);
-            System.out.println();
         }
     }
 
@@ -74,7 +73,6 @@ public class RouteFinderTest {
         routeList.addLast("B");
         routeList.addLast("C");
         String distance = routeFinder.routeListDistanceCounter(routeList);
-        System.out.println("distance: " + distance);
         Integer expected = 9;
         Assert.assertEquals(expected.toString(), distance);
     }
