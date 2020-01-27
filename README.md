@@ -1,5 +1,5 @@
 # testing-task-graphs
-Solution for testing task with graphs. \
+## Solution for testing task with graphs. \
 Project describes the solution to the given task - Trains and Towns. \
 Used build tool - Maven, which includes dependencies and lets us to create an executable jar. \
 
