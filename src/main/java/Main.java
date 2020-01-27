@@ -25,7 +25,7 @@ public class Main {
         writer.write("Output #7: "  + answerService.seventhAnswer() + "\n");
         writer.write("Output #8: "  + answerService.eightsAnswer()  + "\n");
         writer.write("Output #9: "  + answerService.ninesAnswer()   + "\n");
-//        writer.write("Output #10: " + answerService.tensAnswer()    + "\n");
+        writer.write("Output #10: " + answerService.tensAnswer()    + "\n");
 
         writer.close();
     }

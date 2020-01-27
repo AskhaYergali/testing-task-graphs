@@ -90,37 +90,21 @@ public class RouteFinder {
                 .orElseThrow(() -> new IllegalArgumentException("NO SUCH ROUTE"));
     }
 
-    public Graph calculateAllPathsFromStartToEnd(Graph graph, CityNode source, int maxDistance) {
-        source.setDistance(0);
-
-        Set<CityNode> settledNodes = new HashSet<>();
-        Set<CityNode> unsettledNodes = new HashSet<>();
-        unsettledNodes.add(source);
-
-        while (unsettledNodes.size() != 0) {
-            CityNode currentNode = getLowestDistanceNode(unsettledNodes);
-            unsettledNodes.remove(currentNode);
-            for (Map.Entry<CityNode, Integer> adjacencyPair : currentNode.getAdjacentNodes().entrySet()) {
-                if (adjacencyPair.getKey().getName().equals(source.getName())) {
-                    LinkedList<CityNode> oldPath = new LinkedList<>(currentNode.getShortestPath());
-                    oldPath.add(currentNode);
-                    shortPathsFromCtoC.add(oldPath);
-                    totalC += 1;
-                    if (source.getDistance() == 0 || adjacencyPair.getValue() + currentNode.getDistance() < source.getDistance()) {
-                        source.setDistance(adjacencyPair.getValue() + currentNode.getDistance());
-                    }
+    public int calculateAllPathsFromStartToEnd(CityNode source, CityNode end, int distance, int maxDistance) {
+        int counter = 0;
+        for (Map.Entry<CityNode, Integer> adjacencyPair : source.getAdjacentNodes().entrySet()) {
+            CityNode adjacentNode = adjacencyPair.getKey();
+            Integer edgeWeight = adjacencyPair.getValue();
+            int currDistance = distance;
+            currDistance += edgeWeight;
+            if (currDistance < maxDistance) {
+                if (adjacentNode.getName().equals(end.getName())) {
+                    counter += 1;
                 }
-                CityNode adjacentNode = adjacencyPair.getKey();
-                Integer edgeWeight = adjacencyPair.getValue();
-
-                if (currentNode.getDistance() + edgeWeight < maxDistance) {
-                    CalculateDistance(adjacentNode, edgeWeight, currentNode);
-                    unsettledNodes.add(adjacentNode);
-                }
+                counter += calculateAllPathsFromStartToEnd(adjacentNode, end, currDistance, maxDistance);
             }
-            settledNodes.add(currentNode);
         }
-        return graph;
+        return counter;
     }
 
     public Graph calculateShortestPathFromSource(Graph graph, CityNode source) {
@@ -137,9 +121,9 @@ public class RouteFinder {
                 if (adjacencyPair.getKey().getName().equals(source.getName())) {
                     if (source.getDistance() == 0 || adjacencyPair.getValue() + currentNode.getDistance() < source.getDistance()) {
                         source.setDistance(adjacencyPair.getValue() + currentNode.getDistance());
-                        LinkedList<CityNode> shortestPath = new LinkedList<>(currentNode.getShortestPath());
+                        /*LinkedList<CityNode> shortestPath = new LinkedList<>(currentNode.getShortestPath());
                         shortestPath.add(currentNode);
-                        source.setShortestPath(shortestPath);
+                        source.setShortestPath(shortestPath);*/
                     }
                 }
                 CityNode adjacentNode = adjacencyPair.getKey();

@@ -61,11 +61,9 @@ public class RouteFinderTest {
     @Test
     public void testCalculateShortestPathFromCtoC() {
         CityNode nodeC = routeFinder.getCityNodeIfExists("C");
-        routeFinder.calculateAllPathsFromStartToEnd(testGraph, nodeC, 30);
-        System.out.println("C: " + nodeC.getDistance());
-        System.out.println("C: " + nodeC.getShortestPath());
-        System.out.println(routeFinder.shortPathsFromCtoC);
-        System.out.print("Total C: " + routeFinder.totalC);
+        int total = routeFinder.calculateAllPathsFromStartToEnd(nodeC, nodeC, 0, 30);
+        int expected = 7;
+        Assert.assertEquals(expected, total);
     }
 
 

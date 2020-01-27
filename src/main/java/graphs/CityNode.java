@@ -23,16 +23,8 @@ public class CityNode implements Comparable<CityNode>{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Map<CityNode, Integer> getAdjacentNodes() {
         return adjacentNodes;
-    }
-
-    public void setAdjacentNodes(Map<CityNode, Integer> adjacentNodes) {
-        this.adjacentNodes = adjacentNodes;
     }
 
     public Integer getDistance() {

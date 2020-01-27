@@ -102,8 +102,8 @@ public class AnswerService {
 
     public String tensAnswer() {
         CityNode nodeC = routeFinder.getCityNodeIfExists("C");
-        routeFinder.calculateAllPathsFromStartToEnd(graph, nodeC, 30);
-        return routeFinder.totalC.toString();
+        Integer result = routeFinder.calculateAllPathsFromStartToEnd(nodeC, nodeC, 0,30);
+        return result.toString();
     }
 
 }
